@@ -1,392 +1,860 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViSADA - Innovative Software Solutions</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <head>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --accent: #60a5fa;
+            --accent-hover: #3b82f6;
+            --border: #334155;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
 
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
 
-    <title>ViSADA Bilişim - Unity Oyun Geliştirme ve 3D Tasarım</title>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        /* Header */
+        header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+        }
 
+        [data-theme="dark"] header {
+            background: rgba(30, 41, 59, 0.9);
+        }
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-tale-seo-agency.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
 
-TemplateMo 582 Tale SEO Agency
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
 
-https://templatemo.com/tm-582-tale-seo-agency
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
 
--->
-  </head>
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-secondary);
+            color: var(--accent);
+        }
+
+        #langText {
+            font-weight: 600;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px var(--shadow);
+        }
+
+        /* Products Section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: all 0.3s;
+            margin-bottom: 2rem;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px var(--shadow);
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .product-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .product-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 0.75rem;
+            align-items: start;
+        }
+
+        .feature-icon {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-text {
+            color: var(--text-secondary);
+        }
+
+        .product-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 1.5rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 1rem;
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 4px 12px var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
 <body>
-
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <!-- ***** Pre-Header Area Start ***** -->
-  <div class="pre-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-sm-9">
-          <div class="left-info">
-            <ul>
-              <li><a href="#"><i class="fa fa-phone"></i></a></li>
-              <li><a href="#"><i class="fa fa-envelope"></i>visadaltd@gmail.com</a></li>
-              <li><a href="#"><i class="fa fa-map-marker"></i>Bursa-Türkiye</a></li>
-            </ul>
-          </div>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">ViSADA</a>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home" data-i18n="nav.home">Home</a>
+                    <a href="#products" data-i18n="nav.products">Products</a>
+                    <a href="#about" data-i18n="nav.about">About</a>
+                    <a href="#contact" data-i18n="nav.contact">Contact</a>
+                </div>
+                <div class="controls">
+                    <div style="display: flex; gap: 0.25rem; align-items: center; padding: 0.25rem; background: var(--bg-secondary); border-radius: 8px; border: 1px solid var(--border);">
+                        <button class="theme-toggle-btn" id="lightModeBtn" style="padding: 0.4rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-secondary); color: var(--text-secondary); cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 0.25rem; font-weight: 600;">
+                            <span style="font-size: 0.85rem;">☀️</span>
+                        </button>
+                        <button class="theme-toggle-btn" id="darkModeBtn" style="padding: 0.4rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-secondary); color: var(--text-secondary); cursor: pointer; transition: all 0.3s; display: flex; align-items: center; gap: 0.25rem; font-weight: 600;">
+                            <span style="font-size: 0.85rem;">🌙</span>
+                        </button>
+                    </div>
+                    <div style="display: flex; gap: 0.25rem; align-items: center;">
+                        <button class="lang-btn" id="btnTR" style="font-weight: 600; padding: 0.5rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-secondary); color: var(--text-secondary); cursor: pointer; transition: all 0.3s;">TR</button>
+                        <span style="color: var(--text-muted);">|</span>
+                        <button class="lang-btn" id="btnEN" style="font-weight: 600; padding: 0.5rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-secondary); color: var(--text-secondary); cursor: pointer; transition: all 0.3s;">EN</button>
+                    </div>
+                    <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn">
+                        <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+                    </button>
+                </div>
+            </nav>
         </div>
-        <div class="col-lg-4 col-sm-3">
-          <div class="social-icons">
-            <ul>
-              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Pre-Header Area End ***** -->
+    </header>
 
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="assets/images/logo.png" alt="" style="max-width: 112px;">
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <h1 data-i18n="hero.title">Innovative Software Solutions</h1>
+                <p data-i18n="hero.subtitle">Building powerful, user-friendly applications that transform the way you work</p>
+                <a href="#products" class="cta-button" data-i18n="hero.cta">Explore Our Products</a>
+            </div>
+        </section>
+
+        <section class="section" id="products">
+            <div class="container">
+                <h2 class="section-title" data-i18n="products.title">Our Products</h2>
+                
+                <div class="product-card">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i data-lucide="tree-deciduous" style="width: 32px; height: 32px;"></i>
+                        </div>
+                        <div>
+                            <h3 class="product-title" data-i18n="products.orchard.title">Orchard Tracker</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="products.orchard.tagline">Complete Digital Orchard Management</p>
+                        </div>
+                    </div>
+                    
+                    <p class="product-description" data-i18n="products.orchard.description">
+                        A comprehensive web application designed to help orchard owners and managers efficiently track and manage all aspects of their orchards. From tree inventory and location mapping to fertilizer applications, sales tracking, and seasonal notes.
+                    </p>
+
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i data-lucide="trees" class="feature-icon" style="width: 20px; height: 20px;"></i>
+                            <span class="feature-text" data-i18n="products.orchard.features.tree">Individual tree tracking with detailed information</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="map" class="feature-icon" style="width: 20px; height: 20px;"></i>
+                            <span class="feature-text" data-i18n="products.orchard.features.grid">Interactive grid view with visual orchard layout</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="droplet" class="feature-icon" style="width: 20px; height: 20px;"></i>
+                            <span class="feature-text" data-i18n="products.orchard.features.irrigation">Irrigation group management and visualization</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="flask-conical" class="feature-icon" style="width: 20px; height: 20px;"></i>
+                            <span class="feature-text" data-i18n="products.orchard.features.apps">Fertilizer and pesticide application logs</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="shopping-cart" class="feature-icon" style="width: 20px; height: 20px;"></i>
+                            <span class="feature-text" data-i18n="products.orchard.features.sales">Sales tracking with customer management</span>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="cloud-off" class="feature-icon" style="width: 20px; height: 20px;"></i>
+                            <span class="feature-text" data-i18n="products.orchard.features.offline">Full offline support with real-time sync</span>
+                        </div>
+                    </div>
+
+                    <div class="product-links">
+                        <a href="https://gardenal-90191.web.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i data-lucide="external-link" style="width: 18px; height: 18px;"></i>
+                            <span data-i18n="products.orchard.launch">Launch App</span>
+                        </a>
+                        <a href="https://github.com/yourusername/orchard-tracker" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            <i data-lucide="book-open" style="width: 18px; height: 18px;"></i>
+                            <span data-i18n="products.orchard.docs">Documentation</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about" style="background: var(--bg-secondary);">
+            <div class="container">
+                <h2 class="section-title" data-i18n="about.title">About ViSADA</h2>
+                <div class="about-content">
+                    <p data-i18n="about.p1">
+                        ViSADA is dedicated to creating innovative software solutions that empower businesses and individuals to work more efficiently and effectively.
+                    </p>
+                    <p data-i18n="about.p2">
+                        Our mission is to build intuitive, powerful applications that solve real-world problems. We focus on creating tools that are not only feature-rich but also easy to use, ensuring that technology enhances rather than complicates your workflow.
+                    </p>
+                    <p data-i18n="about.p3">
+                        With expertise in modern web technologies and a commitment to excellence, we deliver solutions that meet the highest standards of quality, performance, and user experience.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container">
+                <h2 class="section-title" data-i18n="contact.title">Get in Touch</h2>
+                <div class="about-content">
+                    <p data-i18n="contact.description">
+                        Have questions about our products or interested in working together? We'd love to hear from you.
+                    </p>
+                    <a href="mailto:visadaltd@gmail.com" class="cta-button" style="margin-top: 1.5rem;">
+                        <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        <span data-i18n="contact.email">Contact Us</span>
                     </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li class="scroll-to-section"><a href="#top" class="active">Ana Sayfa</a></li>
-                      <li class="scroll-to-section"><a href="#top" class="active">Servisler</a></li>
-                      <li class="scroll-to-section"><a href="#top" class="active">Assetler</a></li>
-                      <li class="has-sub">
-                          <a href="javascript:void(0)">Hizmetler</a>
-                          <ul class="sub-menu">
-                              <li><a href="#top">Oyun Geliştirme</a></li>
-                              <li><a href="#top">3D Dizayn</a></li>
-                          </ul>
-                      </li>
-                      <li class="scroll-to-section"><a href="#contact">İLETİŞİM</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
+                    
+                    <!-- Location Info -->
+                    <div style="margin-top: 3rem; padding: 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+                            <i data-lucide="map-pin" style="width: 24px; height: 24px; color: var(--accent);"></i>
+                            <h3 style="font-size: 1.5rem; font-weight: 600;" data-i18n="contact.location">Our Location</h3>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                            <span data-i18n="contact.address">Nilüfer, Bursa, Turkey</span>
+                        </p>
+                        
+                        <!-- Map -->
+                        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px var(--shadow);">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97281.23456789012!2d28.9876543!3d40.1876543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ca1582d8d45695%3A0x61a00555fc973392!2zTmlsw7xmZXIsIEJ1cnNh!5e0!3m2!1sen!2str!4v1234567890123!5m2!1sen!2str" 
+                                width="100%" 
+                                height="400" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 data-i18n="footer.company">Company</h3>
+                    <a href="#about" data-i18n="footer.about">About Us</a>
+                    <a href="#products" data-i18n="footer.products">Products</a>
+                    <a href="#contact" data-i18n="footer.contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="footer.products_title">Products</h3>
+                    <a href="#" data-i18n="footer.orchard">Orchard Tracker</a>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="footer.support">Support</h3>
+                    <a href="#" data-i18n="footer.docs">Documentation</a>
+                    <a href="#" data-i18n="footer.help">Help Center</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ViSADA. <span data-i18n="footer.rights">All rights reserved.</span></p>
             </div>
         </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
+    </footer>
 
-  <div class="main-banner" id="top">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7">
-          <div class="caption header-text">
-            <h6>VİSADA BİLİŞİM</h6>
-            <div class="line-dec"></div>
-            <h4>Oyun <em>Dünyasına</em> Hızlı <span>Bir Giriş Yapın</span></h4>
-            <p>Aklınızda hangi tür bir oyun olursa olsun birlikte geliştirebiliriz. Hypercasual, RPG, FPS, Puzzle, vb. oyun türleri için oyun geliştirme hizmetimizden yararlanabilirsiniz.</p>
-            <div class="main-button scroll-to-section"><a href="#services">Daha Fazlasını Keşfedin</a></div>
-            <span>veya</span>
-            <div class="second-button"><a href="#contact">Bize Ulaşın</a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <script>
+        // Wait for DOM and Lucide to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit for Lucide to load
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }, 100);
+        });
 
-  <div class="services section" id="services">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 offset-lg-6">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="section-heading">
-                <h2>Her türlü <em>Oyun Geliştirme Hizmeti</em> 
-                  <span>&amp; 3D</span> Modelleme ve Animasyon</h2>
-                  <div class="line-dec"></div>
-                  <p>İhtiyacınınz olan tüm hizmetler tek çatı altında</p>
-              </div>
-            </div>
-            <div class="col-lg-6 col-sm-6">
-              <div class="service-item">
-                <div class="icon">
-                  <img src="assets/images/services-01.jpg" alt="discover SEO" class="templatemo-feature">
-                </div>
-                <h4>Hayallerinizi Gerçeğe Çevirin</h4>
-              </div>
-            </div>
-            <div class="col-lg-6 col-sm-6">
-              <div class="service-item">
-                <div class="icon">
-                  <img src="assets/images/services-02.jpg" alt="data analysis" class="templatemo-feature">
-                </div>
-                <h4>Tamamen şeffaf çalışma anlayışı ile tanışın</h4>
-              </div>
-            </div>
-            <div class="col-lg-6 col-sm-6">
-              <div class="service-item">
-                <div class="icon">
-                  <img src="assets/images/services-03.jpg" alt="precise data" class="templatemo-feature">
-                </div>
-                <h4>Oyun istatistiklerinizi &amp; ve Getirilerinizi anlık olarak takip edin</h4>
-              </div>
-            </div>
-            <div class="col-lg-6 col-sm-6">
-              <div class="service-item">
-                <div class="icon">
-                  <img src="assets/images/services-04.jpg" alt="SEO marketing" class="templatemo-feature">
-                </div>
-                <h4>Reklam &amp; ve Satış Geliri Elde Edin</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        // Translations
+        const translations = {
+            en: {
+                nav: {
+                    home: "Home",
+                    products: "Products",
+                    about: "About",
+                    contact: "Contact"
+                },
+                hero: {
+                    title: "Innovative Software Solutions",
+                    subtitle: "Building powerful, user-friendly applications that transform the way you work",
+                    cta: "Explore Our Products"
+                },
+                products: {
+                    title: "Our Products",
+                    orchard: {
+                        title: "Orchard Tracker",
+                        tagline: "Complete Digital Orchard Management",
+                        description: "A comprehensive web application designed to help orchard owners and managers efficiently track and manage all aspects of their orchards. From tree inventory and location mapping to fertilizer applications, sales tracking, and seasonal notes.",
+                        features: {
+                            tree: "Individual tree tracking with detailed information",
+                            grid: "Interactive grid view with visual orchard layout",
+                            irrigation: "Irrigation group management and visualization",
+                            apps: "Fertilizer and pesticide application logs",
+                            sales: "Sales tracking with customer management",
+                            offline: "Full offline support with real-time sync"
+                        },
+                        launch: "Launch App",
+                        docs: "Documentation"
+                    }
+                },
+                about: {
+                    title: "About ViSADA",
+                    p1: "ViSADA is dedicated to creating innovative software solutions that empower businesses and individuals to work more efficiently and effectively.",
+                    p2: "Our mission is to build intuitive, powerful applications that solve real-world problems. We focus on creating tools that are not only feature-rich but also easy to use, ensuring that technology enhances rather than complicates your workflow.",
+                    p3: "With expertise in modern web technologies and a commitment to excellence, we deliver solutions that meet the highest standards of quality, performance, and user experience."
+                },
+                contact: {
+                    title: "Get in Touch",
+                    description: "Have questions about our products or interested in working together? We'd love to hear from you.",
+                    email: "Contact Us",
+                    location: "Our Location",
+                    address: "Nilüfer, Bursa, Turkey"
+                },
+                footer: {
+                    company: "Company",
+                    about: "About Us",
+                    products: "Products",
+                    contact: "Contact",
+                    products_title: "Products",
+                    orchard: "Orchard Tracker",
+                    support: "Support",
+                    docs: "Documentation",
+                    help: "Help Center",
+                    rights: "All rights reserved."
+                }
+            },
+            tr: {
+                nav: {
+                    home: "Ana Sayfa",
+                    products: "Ürünler",
+                    about: "Hakkımızda",
+                    contact: "İletişim"
+                },
+                hero: {
+                    title: "Yenilikçi Yazılım Çözümleri",
+                    subtitle: "Çalışma şeklinizi dönüştüren güçlü, kullanıcı dostu uygulamalar geliştiriyoruz",
+                    cta: "Ürünlerimizi Keşfedin"
+                },
+                products: {
+                    title: "Ürünlerimiz",
+                    orchard: {
+                        title: "Bahçe Takip",
+                        tagline: "Komple Dijital Bahçe Yönetimi",
+                        description: "Bahçe sahiplerinin ve yöneticilerinin bahçelerinin tüm yönlerini verimli bir şekilde takip etmelerine ve yönetmelerine yardımcı olmak için tasarlanmış kapsamlı bir web uygulaması. Ağaç envanteri ve konum haritalamadan gübre uygulamalarına, satış takibine ve mevsimsel notlara kadar.",
+                        features: {
+                            tree: "Detaylı bilgilerle bireysel ağaç takibi",
+                            grid: "Görsel bahçe düzeni ile etkileşimli tablo görünümü",
+                            irrigation: "Sulama grubu yönetimi ve görselleştirmesi",
+                            apps: "Gübre ve ilaç uygulama kayıtları",
+                            sales: "Müşteri yönetimi ile satış takibi",
+                            offline: "Gerçek zamanlı senkronizasyon ile tam çevrimdışı destek"
+                        },
+                        launch: "Uygulamayı Başlat",
+                        docs: "Dokümantasyon"
+                    }
+                },
+                about: {
+                    title: "ViSADA Hakkında",
+                    p1: "ViSADA, işletmelerin ve bireylerin daha verimli ve etkili çalışmalarını sağlayan yenilikçi yazılım çözümleri oluşturmaya kendini adamıştır.",
+                    p2: "Misyonumuz, gerçek dünya sorunlarını çözen sezgisel, güçlü uygulamalar geliştirmektir. Sadece özellik açısından zengin değil, aynı zamanda kullanımı kolay araçlar yaratmaya odaklanıyoruz, böylece teknolojinin iş akışınızı karmaşıklaştırmak yerine geliştirmesini sağlıyoruz.",
+                    p3: "Modern web teknolojilerindeki uzmanlığımız ve mükemmelliğe olan bağlılığımızla, en yüksek kalite, performans ve kullanıcı deneyimi standartlarını karşılayan çözümler sunuyoruz."
+                },
+                contact: {
+                    title: "İletişime Geçin",
+                    description: "Ürünlerimiz hakkında sorularınız mı var veya birlikte çalışmakla ilgileniyor musunuz? Lütfen iletişime geçin.",
+                    email: "Bize Ulaşın",
+                    location: "Konumumuz",
+                    address: "Nilüfer, Bursa, Türkiye"
+                },
+                footer: {
+                    company: "Şirket",
+                    about: "Hakkımızda",
+                    products: "Ürünler",
+                    contact: "İletişim",
+                    products_title: "Ürünler",
+                    orchard: "Bahçe Takip",
+                    support: "Destek",
+                    docs: "Dokümantasyon",
+                    help: "Yardım Merkezi",
+                    rights: "Tüm hakları saklıdır."
+                }
+            }
+        };
 
-  <div class="projects section" id="projects">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="section-heading">
-            <h2>Geçmiş <em>Çalışmalarımız</em> &amp; <span> Yeni Projelerimiz</span></h2>
-            <div class="line-dec"></div>
-            <p>Oyun piyasasının toplam piyasa değerinin 90 milyar doların üzerinde olduğunu biliyor muydunuz?</p>
-          </div>
-        </div>
-      </div> 
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="owl-features owl-carousel">
-            <div class="item">
-              <img src="assets/images/projects-01.jpg" alt="">
-              <div class="down-content">
-                <h4>Unity ile Profesyonel Oyun Geliştirme</h4>
-                <a href="#"><i class="fa fa-link"></i></a>
-              </div>
-            </div>
-            <div class="item">
-              <img src="assets/images/projects-02.jpg" alt="">
-              <div class="down-content">
-                <h4>NFT Tasarımı</h4>
-                <a href="https://opensea.io/collection/legendarymedievalwarriors"><i class="fa fa-link"></i></a>
-              </div>
-            </div>
-            <div class="item">
-              <img src="assets/images/projects-03.jpg" alt="">
-              <div class="down-content">
-                <h4>3D Özel Tasarım</h4>
-                <a href="#"><i class="fa fa-link"></i></a>
-              </div>
-            </div>
-            <div class="item">
-              <img src="assets/images/projects-04.jpg" alt="">
-              <div class="down-content">
-                <h4>Tasarım Alternatifleri</h4>
-                <a href="#"><i class="fa fa-link"></i></a>
-              </div>
-            </div>
-            <div class="item">
-              <img src="assets/images/projects-05.jpg" alt="">
-              <div class="down-content">
-                <h4>2D Dizayn Oyunlar</h4>
-                <a href="#"><i class="fa fa-link"></i></a>
-              </div>
-            </div>
-            <div class="item">
-              <img src="assets/images/projects-06.jpg" alt="">
-              <div class="down-content">
-                <h4>Projenize Özel 3D Tasarım</h4>
-                <a href="#"><i class="fa fa-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        // State
+        let currentLang = localStorage.getItem('lang') || null; // null means not set yet
+        let currentTheme = localStorage.getItem('theme') || 'light';
 
-  <div class="infos section" id="infos">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="main-content">
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="left-image">
-                  <img src="assets/images/left-infos.jpg" alt="">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="section-heading">
-                  <h2>Hakkımızda <em>Daha Fazlası</em> &amp; Hizmetlerimiz</h2>
-                  <div class="line-dec"></div>
-                  <p>Oyunlar ile ilgili aklınıza gelebilecek her türlü 3D tasarım ve dezayn projesi için bize güvenebilirsiniz.</p>
-                </div>
-                <div class="skills">
-                  <div class="skill-slide marketing">
-                    <div class="fill"></div>
-                    <h6>Pazarlama</h6>
-                    <span>90%</span>
-                  </div>
-                  <div class="skill-slide digital">
-                    <div class="fill"></div>
-                    <h6>Dijital Medya</h6>
-                    <span>80%</span>
-                  </div>
-                  <div class="skill-slide media">
-                    <div class="fill"></div>
-                    <h6>Sosyal Medya Yönetimi</h6>
-                    <span>95%</span>
-                  </div>
-                </div>
-                <p class="more-info">Pazarlamadan sosyal medya yönetimine tüm dijital medya ihtiyaçlarınızı tek yerden karşılayabilirsiniz.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        // Detect user's country and set language if not already set
+        if (!currentLang) {
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Detected country:', data.country_code);
+                    if (data.country_code === 'TR') {
+                        currentLang = 'tr';
+                    } else {
+                        currentLang = 'en';
+                    }
+                    localStorage.setItem('lang', currentLang);
+                    setActiveLanguage(currentLang);
+                })
+                .catch(error => {
+                    console.error('Error detecting location:', error);
+                    // Default to English if detection fails
+                    currentLang = 'en';
+                    localStorage.setItem('lang', currentLang);
+                    setActiveLanguage(currentLang);
+                });
+        } else {
+            // Language already set, use it
+            console.log('Using saved language:', currentLang);
+        }
 
-  <div class="contact-us section" id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="contact-us-content">
-            <div class="row">
-              <div class="col-lg-4">
-                <div id="map">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97485.6919709269!2d28.96207790533357!3d40.221787864821984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ca1582d8d45695%3A0x61a00555fc973392!2sBursa!5e0!3m2!1sen!2str!4v1673637821642!5m2!1sen!2str" width="100%" height="670px" frameborder="0" style="border:0; border-radius: 23px;" allowfullscreen=""></iframe>
-                </div>
-              </div>
-              <div class="col-lg-8">
-                <form id="contact-form" action="" method="post">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <div class="section-heading">
-                        <h2><em>İletişim</em> &amp; Adres <span>Bilgileri</span></h2>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <input type="name" name="name" id="name" placeholder="Adınız..." autocomplete="on" required>
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <input type="surname" name="surname" id="surname" placeholder="Soyadınız..." autocomplete="on" required>
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="E-mail..." required="">
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <input type="subject" name="subject" id="subject" placeholder="Konu..." autocomplete="on" >
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-12">
-                      <fieldset>
-                        <textarea name="message" id="message" placeholder="Mesajınız"></textarea>
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-12">
-                      <fieldset>
-                        <button type="submit" id="form-submit" class="orange-button">Mesaj Gönderin</button>
-                      </fieldset>
-                    </div>
-                  </div>
-                </form>
-                <div class="more-info">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="info-item">
-                        <i class="fa fa-phone"></i>
-                        <h4><a href="#"></a></h4>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="info-item">
-                        <i class="fa fa-envelope"></i>
-                        <h4><a href="#">visadaltd@gmail.com</a></h4>
-                      </div>
-                    </div>
-                    <div class="col-lg-4">
-                      <div class="info-item">
-                        <i class="fa fa-map-marker"></i>
-                        <h4><a href="#">Bursa, Nilüfer - Türkiye</a></h4>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        // Initialize theme
+        document.documentElement.setAttribute('data-theme', currentTheme);
 
-  <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2023 <a href="#">Visada Bilişim Ltd. Şti.</a>. Tüm Haklar Saklıdır. 
-        
-      </div>
-    </div>
-  </footer>
+        // Theme toggle
+        const lightModeBtn = document.getElementById('lightModeBtn');
+        const darkModeBtn = document.getElementById('darkModeBtn');
 
+        function setTheme(theme) {
+            currentTheme = theme;
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            
+            // Update button styles
+            if (theme === 'light') {
+                lightModeBtn.style.background = 'var(--accent)';
+                lightModeBtn.style.color = 'white';
+                lightModeBtn.style.borderColor = 'var(--accent)';
+                darkModeBtn.style.background = 'var(--bg-secondary)';
+                darkModeBtn.style.color = 'var(--text-secondary)';
+                darkModeBtn.style.borderColor = 'var(--border)';
+            } else {
+                darkModeBtn.style.background = 'var(--accent)';
+                darkModeBtn.style.color = 'white';
+                darkModeBtn.style.borderColor = 'var(--accent)';
+                lightModeBtn.style.background = 'var(--bg-secondary)';
+                lightModeBtn.style.color = 'var(--text-secondary)';
+                lightModeBtn.style.borderColor = 'var(--border)';
+            }
+        }
 
-  <!-- Scripts -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        lightModeBtn.addEventListener('click', () => setTheme('light'));
+        darkModeBtn.addEventListener('click', () => setTheme('dark'));
 
-  <script src="assets/js/isotope.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/tabs.js"></script>
-  <script src="assets/js/popup.js"></script>
-  <script src="assets/js/custom.js"></script>
+        // Initialize theme
+        setTheme(currentTheme);
 
+        // Force icon refresh after theme is set
+        setTimeout(() => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+                console.log('Icons initialized');
+            }
+        }, 100);
 
-  </body>
+        // Language buttons
+        const btnTR = document.getElementById('btnTR');
+        const btnEN = document.getElementById('btnEN');
 
+        function setActiveLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', currentLang);
+            updateLanguage();
+            
+            // Update button styles
+            if (lang === 'tr') {
+                btnTR.style.background = 'var(--accent)';
+                btnTR.style.color = 'white';
+                btnTR.style.borderColor = 'var(--accent)';
+                btnEN.style.background = 'var(--bg-secondary)';
+                btnEN.style.color = 'var(--text-secondary)';
+                btnEN.style.borderColor = 'var(--border)';
+            } else {
+                btnEN.style.background = 'var(--accent)';
+                btnEN.style.color = 'white';
+                btnEN.style.borderColor = 'var(--accent)';
+                btnTR.style.background = 'var(--bg-secondary)';
+                btnTR.style.color = 'var(--text-secondary)';
+                btnTR.style.borderColor = 'var(--border)';
+            }
+        }
+
+        btnTR.addEventListener('click', () => setActiveLanguage('tr'));
+        btnEN.addEventListener('click', () => setActiveLanguage('en'));
+
+        function updateLanguage() {
+            console.log('Updating language to:', currentLang);
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const keys = key.split('.');
+                let value = translations[currentLang];
+                
+                for (const k of keys) {
+                    if (value && value[k]) {
+                        value = value[k];
+                    } else {
+                        console.error('Translation missing for key:', key, 'in language:', currentLang);
+                        return;
+                    }
+                }
+                
+                console.log('Translating', key, 'to:', value);
+                element.textContent = value;
+            });
+            
+            document.documentElement.lang = currentLang;
+            console.log('Language update complete');
+        }
+
+        // Initialize language
+        setActiveLanguage(currentLang);
+
+        // Re-initialize icons after everything is set up
+        setTimeout(() => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+                console.log('Icons re-initialized after language setup');
+            }
+        }, 300);
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
 </html>
